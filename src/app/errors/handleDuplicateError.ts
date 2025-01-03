@@ -27,7 +27,7 @@ const handleDuplicateError = (err: any): TGenericErrorResponse => {
     {
       path: fieldName,
       message: duplicateValue
-        ? `"${duplicateValue}" already exists in the "${fieldName}" field.`
+        ? `The provided value for ${fieldName} already exists. Please choose a different ${fieldName}.`
         : 'Duplicate value detected.',
     },
   ];

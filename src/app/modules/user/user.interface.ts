@@ -1,37 +1,15 @@
-import mongoose from 'mongoose';
+import { ObjectId } from 'mongoose';
+import { TAuth } from '../auth/auth.interface';
 
-export interface IUserProfile {
+export type TUser = {
+  authInfo: ObjectId;
   name: string;
-  username: string;
-  email: string;
-  password: string;
-  isVerified: boolean;
-  isBlocked: boolean;
-  profilePicture: string;
-  bio: string;
-  socialLinks: Array<{ platform: string; url: string }>;
-  location: string;
-  // totalBlogs: number;
-  // totalViews: number;
-  // totalComments: number;
-  // followerCount: number;
-  // followers: mongoose.Types.ObjectId[];
-  // following: mongoose.Types.ObjectId[];
-  // favoriteTags: string[];
-  // bookmarkedBlogs: mongoose.Types.ObjectId[];
-  // comments: Array<{
-  //   blogId: mongoose.Types.ObjectId;
-  //   content: string;
-  //   createdAt: Date;
-  // }>;
-  // preferredCategories: string[];
-  // receiveNotifications: boolean;
+  userName: string;
+  profilePicture?: string | null; // Optional, default is null
+  bio?: string | null; // Optional, default is null
+  socialLinks?: Array<{ platform: string; url: string }> | null; // Optional
+  location?: string | null; // Optional
   isProfilePublic: boolean;
   allowComments: boolean;
-  recentActivity: Array<{
-    type: string;
-    blogId: mongoose.Types.ObjectId;
-    createdAt: Date;
-  }>;
-  lastActiveAt: Date;
-}
+};
+export type TPopulatedUser = Omit<TUser, 'authInfo'> & { authInfo: TAuth };

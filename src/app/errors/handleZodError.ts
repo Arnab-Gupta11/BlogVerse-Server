@@ -13,6 +13,7 @@ const handleZodError = (err: ZodError): TGenericErrorResponse => {
   });
 
   const statusCode = 400;
+  console.log(errorSources);
 
   return {
     statusCode,
